@@ -10,7 +10,7 @@ function Sidebar({data}) {
 
 
   return (
-   <div className="bg-zinc-800 p-4 rounded  flex flex-col items-center justify-between h-[100%]">
+   <div className="bg-zinc-800 p-4 rounded  flex flex-col items-center justify-between h-screen">
   <div className=" flex items-center flex-col justify-center">
     <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"   className="h-[12vh]"/>
   <p className="mt-3 text-xl text-zinc-100 font-semibold">{data.username}</p>
