@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
+import API from "../../axios";
 
 function UserOrderHistory(){
    const [OrderHistory, setOrderHistory] =  useState();
@@ -12,7 +13,7 @@ function UserOrderHistory(){
    }
    useEffect(()=> {
     const fetch = async ()=>{
-     const response =    await axios.get("http://localhost:8000/api/v1/get-order-history", {headers});
+     const response =    await API.get("/get-order-history", {headers});
      setOrderHistory(response.data.data);
     }
     fetch();

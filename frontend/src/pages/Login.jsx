@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API from "../axios";
 import {authActions} from "../store/auth";
 import { useDispatch } from "react-redux";
 function Login() {
@@ -25,7 +26,7 @@ function Login() {
         alert("All fields are required")
       }
      else{
-  const response = await axios.post("http://localhost:8000/api/v1/sign-in", Values);
+  const response = await API.post("/sign-in", Values);
   dispatch(authActions.login());
   dispatch(authActions.changeRole(response.data.role));
 

@@ -3,6 +3,7 @@ import Sidebar from "../components/Profile/Sidebar"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
 import axios from "axios";
+import API from "../axios";
 import Loader from "../components/Loader/Loader";
 import MobileNav from "../components/Profile/MobileNav";
 
@@ -15,7 +16,7 @@ function Profile() {
    }
   useEffect(()=> {
     const fetch = async ()=> {
-      const response = await axios.get("http://localhost:8000/api/v1/get-user-information",{headers});
+      const response = await API.get("/get-user-information",{headers});
      
       setProfile(response.data.data);
       

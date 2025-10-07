@@ -8,6 +8,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { FaEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
+import API from "../../axios";
 
 
 
@@ -21,7 +22,7 @@ function ViewBookDetails() {
    
       useEffect(()=>{
     const fetch = async ()=>{
-      const response =  await axios.get(`http://localhost:8000/api/v1/get-book-by-id/${id}`);
+      const response =  await API.get(`/get-book-by-id/${id}`);
       // console.log(response)
       setData(response.data.data)
     }
@@ -34,17 +35,17 @@ function ViewBookDetails() {
     bookid: id,
    }
    const handleFavourite = async ()=>{
-    const response = await axios.put("http://localhost:8000/api/v1/add-book-to-favourite",{},{headers})
+    const response = await API.put("/add-book-to-favourite",{},{headers})
     alert(response.data.message)
    }
 
    const handleCart = async ()=> {
-    const response = await axios.put("http://localhost:8000/api/v1/add-to-cart",{}, {headers})
+    const response = await API.put("/add-to-cart",{}, {headers})
     alert(response.data.message)
    }
 
    const deleteBook = async ()=>{
-    const response = await axios.delete("http://localhost:8000/api/v1/delete-book", {headers});
+    const response = await API.delete("/delete-book", {headers});
     alert(response.data.message);
     navigate("/all-books")
 

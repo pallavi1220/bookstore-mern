@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Loader from "../components/Loader/Loader";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
+import API from "../axios";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
@@ -15,7 +16,7 @@ function Cart() {
 
     useEffect(()=> {
     const fetch = async ()=> {
-      const response = await axios.get("http://localhost:8000/api/v1/get-user-cart",{headers});
+      const response = await API.get("/get-user-cart",{headers});
      
       setCart(response.data.data);
       
@@ -25,7 +26,7 @@ function Cart() {
   }, [Cart]);
 
   const deleteItem = async (bookid)=>{
-    const response = await axios.put(`http://localhost:8000/api/v1/remove-from-cart/${bookid}`,
+    const response = await API.put(`/remove-from-cart/${bookid}`,
       {},{headers}
     )
     alert(response.data.message)
@@ -44,7 +45,7 @@ function Cart() {
 
   const PlaceOrder = async ()=>{
     try {
-      const response = await axios.post(`http://localhost:8000/api/v1/place-order`,{order: Cart},
+      const response = await API.post(`/place-order`,{order: Cart},
         {headers}
       );
       alert(response.data.message);

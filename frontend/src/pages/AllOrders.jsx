@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import Loader from "../components/Loader/Loader";
+import API from "../axios";
 import { FaUserLarge } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa6";
@@ -22,7 +23,7 @@ function AllOrders() {
   };
   useEffect(()=>{
     const fetch = async ()=>{
-      const response = await axios.get("http://localhost:8000/api/v1/get-all-orders",{headers})
+      const response = await API.get("/get-all-orders",{headers})
       setAllOrders(response.data.data)
     }
     fetch();
@@ -35,7 +36,7 @@ function AllOrders() {
   }
   const submitChanges = async (i) =>{
     const id = AllOrders[i]._id;
-    const response = await axios.put(`http://localhost:8000/api/v1/update-status/${id}`,Values,{headers})
+    const response = await API.put(`/update-status/${id}`,Values,{headers})
     alert(response.data.message);
   }
   

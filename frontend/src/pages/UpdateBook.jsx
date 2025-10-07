@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import API from "../axios";
 import {  useNavigate, useParams } from "react-router-dom";
 function UpdateBook() {
    
@@ -36,8 +37,8 @@ function UpdateBook() {
       ) {
         alert("All fields are required");
       } else {
-        const response = await axios.put(
-          "http://localhost:8000/api/v1/update-book",
+        const response = await API.put(
+          "/update-book",
           Data,
           { headers }
         );
@@ -60,7 +61,7 @@ function UpdateBook() {
   };
    useEffect(()=>{
     const fetch = async ()=>{
-      const response =  await axios.get(`http://localhost:8000/api/v1/get-book-by-id/${id}`);
+      const response =  await API.get(`/get-book-by-id/${id}`);
       // console.log(response)
       setData(response.data.data)
     }

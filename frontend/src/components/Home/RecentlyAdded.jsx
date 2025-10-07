@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
+import API from "../../axios";
 import BookCard from "../BookCard/BookCard";
 import Loader from "../Loader/Loader";
 
@@ -7,7 +8,7 @@ function RecentlyAdded() {
    const [Data,setData]=  useState();
    useEffect(()=>{
     const fetch = async ()=>{
-      const response =  await axios.get("http://localhost:8000/api/v1/get-recent-books")
+      const response =  await API.get("/get-recent-books")
       setData(response.data.data)
     }
     fetch();
